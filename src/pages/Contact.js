@@ -1,14 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+
+import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 import {
   FaEnvelope,
-  FaPhone,
-  FaLinkedin,
   FaFacebookSquare,
-  FaTwitter,
   FaInstagram,
-} from "react-icons/fa";
-import {useTranslation} from "react-i18next";
+  FaLinkedin,
+  FaPhone,
+  FaTwitter,
+} from 'react-icons/fa';
+import styled from 'styled-components';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -59,12 +61,6 @@ const Name = styled.h3`
   margin-bottom: 0.25rem;
 `;
 
-const Role = styled.p`
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 0.25rem;
-`;
-
 const Email = styled.a`
   color: #111111;
   text-decoration: none;
@@ -88,59 +84,78 @@ const SocialIcon = styled.a`
 `;
 
 function Contact() {
-
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <PageContainer>
-      <Title>{t("contact_title")}</Title>
-      <ContactInfo>
-        <ContactItem>info@kolt.fi</ContactItem>
-        <ContactItem>0405539850</ContactItem>
-      </ContactInfo>
-      <TeamInfo>
-        <TeamMember>
-          <Name>Riku Lauttia</Name>
-          <Email href="mailto:rikulauttia@kolt.fi">rikulauttia@kolt.fi</Email>
-        </TeamMember>
-        <TeamMember>
-          <Name>Robi Johansson</Name>
-          <Email href="mailto:robijohansson@kolt.fi">
-            robijohansson@kolt.fi
-          </Email>
-        </TeamMember>
-      </TeamInfo>
-      <SocialLinks>
-        <SocialIcon
-          href="https://linkedin.com/company/koltcompany"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaLinkedin />
-        </SocialIcon>
-        <SocialIcon
-          href="https://www.facebook.com/profile.php?id=61563602496571"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaFacebookSquare />
-        </SocialIcon>
-        <SocialIcon
-          href="https://x.com/koltapp"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaTwitter />
-        </SocialIcon>
-        <SocialIcon
-          href="https://www.instagram.com/koltapp/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaInstagram />
-        </SocialIcon>
-      </SocialLinks>
-    </PageContainer>
+    <>
+      <Helmet>
+        <title>{t("contact_title")} | Kolt</title>
+        <meta name="description" content={t("contact_description")} />
+        <link rel="canonical" href="https://www.kolt.fi/contact" />
+        <meta property="og:title" content={t("contact_title")} />
+        <meta property="og:description" content={t("contact_description")} />
+        <meta property="og:url" content="https://www.kolt.fi/contact" />
+        <meta property="og:type" content="website" />
+        <html lang={i18n.language} />
+      </Helmet>
+      <PageContainer>
+        <Title>{t("contact_title")}</Title>
+        <ContactInfo>
+          <ContactItem>
+            <Icon>
+              <FaEnvelope />
+            </Icon>
+            info@kolt.fi
+          </ContactItem>
+          <ContactItem>
+            <Icon>
+              <FaPhone />
+            </Icon>
+            0405539850
+          </ContactItem>
+        </ContactInfo>
+        <TeamInfo>
+          <TeamMember>
+            <Name>Riku Lauttia</Name>
+            <Email href="mailto:rikulauttia@kolt.fi">rikulauttia@kolt.fi</Email>
+          </TeamMember>
+          <TeamMember>
+            <Name>Robi Johansson</Name>
+            <Email href="mailto:robijohansson@kolt.fi">robijohansson@kolt.fi</Email>
+          </TeamMember>
+        </TeamInfo>
+        <SocialLinks>
+          <SocialIcon
+            href="https://linkedin.com/company/koltcompany"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin />
+          </SocialIcon>
+          <SocialIcon
+            href="https://www.facebook.com/profile.php?id=61563602496571"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebookSquare />
+          </SocialIcon>
+          <SocialIcon
+            href="https://x.com/koltapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTwitter />
+          </SocialIcon>
+          <SocialIcon
+            href="https://www.instagram.com/koltapp/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram />
+          </SocialIcon>
+        </SocialLinks>
+      </PageContainer>
+    </>
   );
 }
 

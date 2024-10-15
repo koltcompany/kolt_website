@@ -1,7 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+
+import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -66,26 +68,37 @@ const SecondaryButton = styled(Button)`
 `;
 
 function Home() {
-
   const navigateTo = (path) => {
     window.scrollTo(0, 0);
   }
 
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <HomeWrapper>
-      <Content>
-        <Title>{t("home_title")}</Title>
-        <Subtitle>
-          {t("home_subtitle")}
-        </Subtitle>
-        <ButtonGroup>
-          <PrimaryButton onClick={() => navigateTo('/services')} to="/services">{t("home_button_explore_services")}</PrimaryButton>
-          <SecondaryButton onClick={() => navigateTo('/contact')} to="/contact">{t("home_button_contact_us")}</SecondaryButton>
-        </ButtonGroup>
-      </Content>
-    </HomeWrapper>
+    <>
+      <Helmet>
+        <title>{t("home_title")} | Kolt</title>
+        <meta name="description" content={t("home_subtitle")} />
+        <link rel="canonical" href="https://www.kolt.fi/" />
+        <meta property="og:title" content={t("home_title")} />
+        <meta property="og:description" content={t("home_subtitle")} />
+        <meta property="og:url" content="https://www.kolt.fi/" />
+        <meta property="og:type" content="website" />
+        <html lang={i18n.language} />
+      </Helmet>
+      <HomeWrapper>
+        <Content>
+          <Title>{t("home_title")}</Title>
+          <Subtitle>
+            {t("home_subtitle")}
+          </Subtitle>
+          <ButtonGroup>
+            <PrimaryButton onClick={() => navigateTo('/services')} to="/services">{t("home_button_explore_services")}</PrimaryButton>
+            <SecondaryButton onClick={() => navigateTo('/contact')} to="/contact">{t("home_button_contact_us")}</SecondaryButton>
+          </ButtonGroup>
+        </Content>
+      </HomeWrapper>
+    </>
   );
 }
 

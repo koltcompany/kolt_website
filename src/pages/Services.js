@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+
+import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -55,41 +57,50 @@ const ServiceItem = styled.li`
 `;
 
 function Services() {
-
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <PageContainer>
-      <Title>
-        {t("service_title")}
-      </Title>
-      <ServiceGrid>
-        <ServiceColumn>
-          <ServiceTitle>{t("service_for_installers")}</ServiceTitle>
-          <ServiceList>
-            <ServiceItem>{t("service_installers_list1")}</ServiceItem>
-            <ServiceItem>{t("service_installers_list2")}</ServiceItem>
-            <ServiceItem>{t("service_installers_list3")}</ServiceItem>
-          </ServiceList>
-        </ServiceColumn>
-        <ServiceColumn>
-          <ServiceTitle>{t("service_for_businesses")}</ServiceTitle>
-          <ServiceList>
-            <ServiceItem>{t("service_businesses_list1")}</ServiceItem>
-            <ServiceItem>{t("service_businesses_list2")}</ServiceItem>
-            <ServiceItem>{t("service_businesses_list3")}</ServiceItem>
-          </ServiceList>
-        </ServiceColumn>
-        <ServiceColumn>
-          <ServiceTitle>{t("service_for_drivers")}</ServiceTitle>
-          <ServiceList>
-            <ServiceItem>{t("service_drivers_list1")}</ServiceItem>
-            <ServiceItem>{t("service_drivers_list2")}</ServiceItem>
-            <ServiceItem>{t("service_drivers_list3")}</ServiceItem>
-          </ServiceList>
-        </ServiceColumn>
-      </ServiceGrid>
-    </PageContainer>
+    <>
+      <Helmet>
+        <title>{t("service_title")} | Kolt</title>
+        <meta name="description" content={t("service_description")} />
+        <link rel="canonical" href="https://www.kolt.fi/services" />
+        <meta property="og:title" content={t("service_title")} />
+        <meta property="og:description" content={t("service_description")} />
+        <meta property="og:url" content="https://www.kolt.fi/services" />
+        <meta property="og:type" content="website" />
+        <html lang={i18n.language} />
+      </Helmet>
+      <PageContainer>
+        <Title>{t("service_title")}</Title>
+        <ServiceGrid>
+          <ServiceColumn>
+            <ServiceTitle>{t("service_for_installers")}</ServiceTitle>
+            <ServiceList>
+              <ServiceItem>{t("service_installers_list1")}</ServiceItem>
+              <ServiceItem>{t("service_installers_list2")}</ServiceItem>
+              <ServiceItem>{t("service_installers_list3")}</ServiceItem>
+            </ServiceList>
+          </ServiceColumn>
+          <ServiceColumn>
+            <ServiceTitle>{t("service_for_businesses")}</ServiceTitle>
+            <ServiceList>
+              <ServiceItem>{t("service_businesses_list1")}</ServiceItem>
+              <ServiceItem>{t("service_businesses_list2")}</ServiceItem>
+              <ServiceItem>{t("service_businesses_list3")}</ServiceItem>
+            </ServiceList>
+          </ServiceColumn>
+          <ServiceColumn>
+            <ServiceTitle>{t("service_for_drivers")}</ServiceTitle>
+            <ServiceList>
+              <ServiceItem>{t("service_drivers_list1")}</ServiceItem>
+              <ServiceItem>{t("service_drivers_list2")}</ServiceItem>
+              <ServiceItem>{t("service_drivers_list3")}</ServiceItem>
+            </ServiceList>
+          </ServiceColumn>
+        </ServiceGrid>
+      </PageContainer>
+    </>
   );
 }
 

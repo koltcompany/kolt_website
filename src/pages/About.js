@@ -1,7 +1,9 @@
-import React, {useEffect, useState, useTransition} from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+
+import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -93,49 +95,51 @@ const Paragraph = styled.p`
 `;
 
 function About() {
-  const {t} = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
-    <PageContainer>
-      <HeroSection>
-        <Content>
-          <Title>{t("about_title")}</Title>
-          <Subtitle>
-            {t("about_kolt")}
-          </Subtitle>
-        </Content>
-      </HeroSection>
+    <>
+      <Helmet>
+        <title>{t("about_title")} | Kolt</title>
+        <meta name="description" content={t("about_kolt")} />
+        <link rel="canonical" href="https://www.kolt.fi/about" />
+        <meta property="og:title" content={t("about_title")} />
+        <meta property="og:description" content={t("about_kolt")} />
+        <meta property="og:url" content="https://www.kolt.fi/about" />
+        <meta property="og:type" content="website" />
+        <html lang={i18n.language} />
+      </Helmet>
+      <PageContainer>
+        <HeroSection>
+          <Content>
+            <Title>{t("about_title")}</Title>
+            <Subtitle>{t("about_kolt")}</Subtitle>
+          </Content>
+        </HeroSection>
 
         <HeroSection>
           <Content>
             <Title>{t("our_vision_title")}</Title>
-            <Subtitle>
-              {t("our_vision_subtitle")}
-            </Subtitle>
+            <Subtitle>{t("our_vision_subtitle")}</Subtitle>
           </Content>
         </HeroSection>
 
         <HeroSection>
           <Content>
             <Title>{t("why_kolt_title")}</Title>
-            <Subtitle>
-              {t("why_kolt_subtitle")}
-            </Subtitle>
+            <Subtitle>{t("why_kolt_subtitle")}</Subtitle>
           </Content>
         </HeroSection>
 
         <HeroSection>
           <Content>
             <Title>{t("join_us_title")}</Title>
-            <Subtitle>
-              {t("join_us_subtitle1")}
-            </Subtitle>
-            <Subtitle>
-              {t("join_us_subtitle2")}
-            </Subtitle>
+            <Subtitle>{t("join_us_subtitle1")}</Subtitle>
+            <Subtitle>{t("join_us_subtitle2")}</Subtitle>
           </Content>
         </HeroSection>
       </PageContainer>
+    </>
   );
 }
 
