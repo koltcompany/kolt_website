@@ -30,5 +30,10 @@
   "join_us_title": "Join Us",
   "join_us_subtitle1": "As we focus on scaling our enterprise to new heights, we invite visionary investors and strategic partners to join us on this transformative journey. Together, we can harness the full potential of AI in construction, driving innovation that not only disrupts the industry but also propels it towards greater efficiency and sustainability.",
   "join_us_subtitle2": "At Kolt, we are more than just a company — we are pioneers of progress, dedicated to creating a brighter, more efficient future for the construction industry. Join us as we take bold steps toward making Kolt a global leader in construction technology.",
-  "contact_title": "Contact Us"
+  "contact_title": "Contact Us",
+  "languages": {
+    "finnish": "Finnish",
+    "english": "English",
+    "swedish": "Swedish"
+  }
 }

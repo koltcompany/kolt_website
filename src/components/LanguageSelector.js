@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {changeLanguage} from "i18next";
-import {useTranslation} from "react-i18next";
+import React, { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
 
 const btnContainerStyle = {
     display: "flex",
@@ -31,15 +31,15 @@ const selectedButtonStyle = {
 }
 
 const languages = [
-    {code: "fi", lang: "Finnish"},
-    {code: "en", lang: "English"},
-    {code: "sv", lang: "Swedish"},
+    { code: "fi", lang: "languages.finnish" },
+    { code: "en", lang: "languages.english" },
+    { code: "sv", lang: "languages.swedish" },
 ]
 
 const LanguageSelector = () => {
     const [hoveredButton, setHoveredButton] = useState(null);
     const [selectedButton, setSelectedButton] = useState(null);
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
@@ -47,15 +47,17 @@ const LanguageSelector = () => {
     };
 
     return (
-        <div className="btn-container">
+        <div style={btnContainerStyle}>
             {languages.map((lng) => {
-                return <button style={lng.code === selectedButton ? selectedButtonStyle :
-                    lng.code === hoveredButton ? hoverButtonStyle : buttonStyle}
-                               onMouseEnter={() => setHoveredButton(lng.code)}
-                               onMouseLeave={() => setHoveredButton(null)}
-                               key={lng.code}
-                               onClick={() => changeLanguage(lng.code)}>
-                    {lng.lang}
+                return <button 
+                    style={lng.code === selectedButton ? selectedButtonStyle :
+                        lng.code === hoveredButton ? hoverButtonStyle : buttonStyle}
+                    onMouseEnter={() => setHoveredButton(lng.code)}
+                    onMouseLeave={() => setHoveredButton(null)}
+                    key={lng.code}
+                    onClick={() => changeLanguage(lng.code)}
+                >
+                    {t(lng.lang)}
                 </button>
             })}
         </div>

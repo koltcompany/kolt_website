@@ -30,5 +30,10 @@
   "join_us_title": "Liity Meihin",
   "join_us_subtitle1": "Keskittyessämme yrityksemme kasvattamiseen uusiin korkeuksiin, kutsumme visionäärisiä sijoittajia ja strategisia kumppaneita liittymään mukaan tälle mullistavalle matkalle. Yhdessä voimme hyödyntää tekoälyn täyden potentiaalin rakennusalalla, edistäen innovaatioita, jotka eivät vain häiritse alaa, vaan myös vievät sitä kohti suurempaa tehokkuutta ja kestävyyttä.",
   "join_us_subtitle2": "Koltissa olemme enemmän kuin vain yritys — olemme edistysaskelten pioneereja, jotka ovat omistautuneet luomaan kirkkaamman ja tehokkaamman tulevaisuuden rakennusalalle. Liity meihin, kun otamme rohkeita askelia tehdäksemme Koltista maailmanlaajuisen johtajan rakennusteknologiassa.",
-  "contact_title": "Ota Yhteyttä"
+  "contact_title": "Ota Yhteyttä",
+  "languages": {
+    "finnish": "Suomi",
+    "english": "Englanti",
+    "swedish": "Ruotsi"
+  }
 }

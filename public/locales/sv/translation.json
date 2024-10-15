@@ -30,5 +30,10 @@
   "join_us_title": "Gå med oss",
   "join_us_subtitle1": "När vi fokuserar på att skala vårt företag till nya höjder, bjuder vi in visionära investerare och strategiska partners att gå med oss på denna transformativa resa. Tillsammans kan vi utnyttja AI:s fulla potential inom byggbranschen och driva innovation som inte bara stör branschen utan också driver den mot större effektivitet och hållbarhet.",
   "join_us_subtitle2": "På Kolt är vi mer än bara ett företag — vi är framstegspionjärer, dedikerade till att skapa en ljusare, mer effektiv framtid för byggbranschen. Gå med oss när vi tar djärva steg mot att göra Kolt till en global ledare inom byggteknologi.",
-  "contact_title": "Kontakta Oss"
+  "contact_title": "Kontakta Oss",
+  "languages": {
+    "finnish": "Finska",
+    "english": "Engelska",
+    "swedish": "Svenska"
+  }
 }
