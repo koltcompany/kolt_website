@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import LanguageSelector from "./LanguageSelector";
-import {useTranslation} from "react-i18next";
+import React, { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import LanguageSelector from './LanguageSelector';
 
 const HeaderWrapper = styled.header`
   background-color: #f9f9f7;
@@ -33,7 +35,7 @@ const NavLinks = styled.ul`
   align-items: center;
 
   @media (max-width: 768px) {
-    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -82,7 +84,7 @@ function Header({ currentLocale, onLanguageChange }) {
     window.scrollTo(0, 0);
   }
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <HeaderWrapper>
@@ -91,7 +93,7 @@ function Header({ currentLocale, onLanguageChange }) {
         <MenuButton onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "✕" : "☰"}
         </MenuButton>
-        <NavLinks isOpen={isOpen}>
+        <NavLinks $isOpen={isOpen}>
           <NavItem>
             <NavLink onClick={() => navigateTo('/')} to="/">{t("nav_home")}</NavLink>
           </NavItem>
