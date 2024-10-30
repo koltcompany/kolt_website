@@ -117,7 +117,7 @@ function Services() {
   return (
     <>
       <Helmet>
-        <title>{t("service_title")} | Kolt</title>
+        <title>Kolt | {t("service_title")}</title>
         <meta name="description" content={t("service_description")} />
         <link rel="canonical" href="https://www.kolt.fi/services" />
         <meta property="og:title" content={t("service_title")} />

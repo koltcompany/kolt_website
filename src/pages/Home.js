@@ -131,7 +131,7 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>{t("home_title")} | Kolt</title>
+        <title>Kolt | {t("home_title")}</title>
         <meta name="description" content={t("home_subtitle")} />
         <link rel="canonical" href="https://www.kolt.fi/" />
         <meta property="og:title" content={t("home_title")} />

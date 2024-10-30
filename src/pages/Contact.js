@@ -158,7 +158,7 @@ function Contact() {
   return (
     <>
       <Helmet>
-        <title>{t("contact_title")} | Kolt</title>
+        <title>Kolt | {t("contact_title")}</title>
         <meta name="description" content={t("contact_description")} />
         <link rel="canonical" href="https://www.kolt.fi/contact" />
         <meta property="og:title" content={t("contact_title")} />

@@ -241,7 +241,7 @@ function About() {
   return (
     <>
       <Helmet>
-        <title>{t("about_title")} | Kolt</title>
+        <title>Kolt | {t("about_title")}</title>
         <meta name="description" content={t("about_kolt")} />
         <link rel="canonical" href="https://www.kolt.fi/about" />
         <meta property="og:title" content={t("about_title")} />
