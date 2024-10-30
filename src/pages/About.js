@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
@@ -32,9 +35,9 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 80px 2rem;
-  background-color: #f9f9f7;
-  max-width: 1200px;
   margin: 0 auto;
+  transition: background-color 0.6s ease;
+  background-color: ${props => props.$bgColor};
 
   @media (max-width: 768px) {
     padding: 60px 1rem;
@@ -45,8 +48,9 @@ const HeroSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: auto;
+  min-height: 100vh;
   padding: 4rem 0;
+  transition: all 0.6s ease;
 
   @media (max-width: 768px) {
     padding: 2rem 0;
@@ -167,30 +171,70 @@ const SecondaryButton = styled(Button)`
   }
 `;
 
+const BackgroundSection = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: background-color 0.6s ease;
+  background-color: ${props => props.$bgColor};
+`;
+
 
 function About() {
   const { t, i18n } = useTranslation();
+  const [activeSection, setActiveSection] = useState(0);
+  
+  // Define background colors for each section
+  const sectionColors = [
+    '#f9f9f7', // Light background for first section
+    '#ffffff', // White for second section
+    '#f5f5f5', // Slight gray for third section
+    '#f9f9f7'  // Back to light background for last section
+  ];
+
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: '-50% 0px', // Trigger when section is in the middle of viewport
+      threshold: 0
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
+          const sectionIndex = parseInt(entry.target.getAttribute('data-section'));
+          setActiveSection(sectionIndex);
           entry.target.classList.add('visible');
-          // Optional: Unobserve after animation
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const sections = document.querySelectorAll('.animate-section');
-    sections.forEach((section) => observer.observe(section));
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-    return () => observer.disconnect();
+    // Observe sections for background changes
+    document.querySelectorAll('.section').forEach((section, index) => {
+      section.setAttribute('data-section', index);
+      sectionObserver.observe(section);
+    });
+
+    // Observe elements for animations
+    document.querySelectorAll('.animate-section').forEach((el) => {
+      animationObserver.observe(el);
+    });
+
+    return () => {
+      sectionObserver.disconnect();
+      animationObserver.disconnect();
+    };
   }, []);
 
 
@@ -206,8 +250,9 @@ function About() {
         <meta property="og:type" content="website" />
         <html lang={i18n.language} />
       </Helmet>
+      <BackgroundSection $bgColor={sectionColors[activeSection]} />
       <PageContainer>
-        <HeroSection>
+        <HeroSection className="section">
           <FadeInSection className="animate-section">
             <Content>
               <Title>{t("about_title")}</Title>
@@ -216,7 +261,7 @@ function About() {
           </FadeInSection>
         </HeroSection>
 
-        <HeroSection>
+        <HeroSection className="section">
           <SlideInSection className="animate-section" $direction="left">
             <Content>
               <Title>{t("our_vision_title")}</Title>
@@ -225,7 +270,7 @@ function About() {
           </SlideInSection>
         </HeroSection>
 
-        <HeroSection>
+        <HeroSection className="section">
           <SlideInSection className="animate-section" $direction="right">
             <Content>
               <Title>{t("why_kolt_title")}</Title>
@@ -234,7 +279,7 @@ function About() {
           </SlideInSection>
         </HeroSection>
 
-        <HeroSection>
+        <HeroSection className="section">
           <FadeInSection className="animate-section">
             <Content>
               <Title>{t("join_us_title")}</Title>
