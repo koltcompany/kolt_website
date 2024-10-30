@@ -1,18 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
   background-color: #000000;
   color: #ffffff;
   padding: 2rem 0 1rem;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 0 0.75rem;
+  }
 `;
 
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const TopSection = styled.div`
@@ -20,6 +29,12 @@ const TopSection = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+  }
 `;
 
 const FooterSection = styled.div`
@@ -29,15 +44,32 @@ const FooterSection = styled.div`
   &:last-child {
     margin-right: 0;
   }
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
 `;
 
 const FooterTitle = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const FooterText = styled.p`
   margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
 `;
 
 const FooterLink = styled(Link)`
@@ -45,9 +77,16 @@ const FooterLink = styled(Link)`
   text-decoration: none;
   display: block;
   margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0;
   }
 `;
 
@@ -57,32 +96,60 @@ const BottomSection = styled.div`
   align-items: center;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    text-align: center;
+  }
 `;
 
-const Copyright = styled.div``;
+const Copyright = styled.div`
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
+  }
+`;
 
 const SocialIcons = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    justify-content: center;
+  }
 `;
 
 const SocialIcon = styled.a`
   color: #ffffff;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   svg {
     width: 24px;
     height: 24px;
     transition: fill 0.3s ease;
+
+    @media (max-width: 768px) {
+      width: 28px;
+      height: 28px;
+    }
   }
 
   &:hover svg {
     fill: #4a90e2;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    margin: -0.5rem;
+  }
 `;
 
 function Footer() {
-
   const navigateTo = (path) => {
     window.scrollTo(0, 0);
   }
@@ -100,14 +167,14 @@ function Footer() {
             <FooterText>3463883-8</FooterText>
           </FooterSection>
           <FooterSection>
-            <FooterTitle></FooterTitle>
+            <FooterTitle>{t("nav_menu")}</FooterTitle>
             <FooterLink onClick={() => navigateTo('/')} to="/">{t("nav_home")}</FooterLink>
             <FooterLink onClick={() => navigateTo('/services')} to="/services">{t("nav_services")}</FooterLink>
             <FooterLink onClick={() => navigateTo('/about')} to="/about">{t("nav_about")}</FooterLink>
             <FooterLink onClick={() => navigateTo('/contact')} to="/contact">{t("nav_contact")}</FooterLink>
           </FooterSection>
           <FooterSection>
-            <FooterTitle></FooterTitle>
+            <FooterTitle>{t("contact_us")}</FooterTitle>
             <FooterText>info@kolt.fi</FooterText>
             <FooterText>0405539850</FooterText>
           </FooterSection>
@@ -123,6 +190,7 @@ function Footer() {
               href="https://linkedin.com/company/koltcompany"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

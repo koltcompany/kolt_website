@@ -11,10 +11,14 @@ const PageContainer = styled.div`
   padding: 80px 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 60px 1rem;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   color: #000000;
   margin-bottom: 2rem;
   margin-top: 6rem;
@@ -24,6 +28,12 @@ const Title = styled.h1`
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
 `;
 
 const ServiceGrid = styled.div`
@@ -31,18 +41,45 @@ const ServiceGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 4rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
 `;
 
 const ServiceColumn = styled.div`
   background-color: #f9f9f7;
   padding: 2rem;
+  border-radius: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  @media (min-width: 769px) {
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const ServiceTitle = styled.h2`
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   color: #000000;
   margin-bottom: 1.5rem;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const ServiceList = styled.ul`
@@ -51,9 +88,27 @@ const ServiceList = styled.ul`
 `;
 
 const ServiceItem = styled.li`
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   color: #333333;
   margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.5rem;
+
+  &:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #000000;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 function Services() {

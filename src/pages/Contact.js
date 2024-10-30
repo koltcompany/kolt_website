@@ -20,13 +20,25 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 2rem;
   background-color: #f9f9f7;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 4rem 1rem;
+    justify-content: flex-start;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 4.5rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   color: #000000;
   margin-bottom: 4rem;
   font-weight: 700;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactInfo = styled.div`
@@ -34,52 +46,109 @@ const ContactInfo = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 600px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const ContactItem = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 0.7rem;
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Icon = styled.span`
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
 `;
 
 const TeamInfo = styled.div`
   text-align: center;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
 `;
 
 const TeamMember = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Name = styled.h3`
-  font-size: 1.2rem;
-  margin-bottom: 0.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.2rem);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 `;
 
 const Email = styled.a`
   color: #111111;
   text-decoration: none;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  padding: 0.5rem;
+  
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem 0;
   }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
 `;
 
 const SocialIcon = styled.a`
   color: #000000;
-  font-size: 1.5rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover {
     color: #555555;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
   }
 `;
 
@@ -105,13 +174,17 @@ function Contact() {
             <Icon>
               <FaEnvelope />
             </Icon>
-            info@kolt.fi
+            <a href="mailto:info@kolt.fi" style={{ color: 'inherit', textDecoration: 'none' }}>
+              info@kolt.fi
+            </a>
           </ContactItem>
           <ContactItem>
             <Icon>
               <FaPhone />
             </Icon>
-            0405539850
+            <a href="tel:+358405539850" style={{ color: 'inherit', textDecoration: 'none' }}>
+              0405539850
+            </a>
           </ContactItem>
         </ContactInfo>
         <TeamInfo>
@@ -129,6 +202,7 @@ function Contact() {
             href="https://linkedin.com/company/koltcompany"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn"
           >
             <FaLinkedin />
           </SocialIcon>
@@ -136,6 +210,7 @@ function Contact() {
             href="https://www.facebook.com/profile.php?id=61563602496571"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook"
           >
             <FaFacebookSquare />
           </SocialIcon>
@@ -143,6 +218,7 @@ function Contact() {
             href="https://x.com/koltapp"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter"
           >
             <FaTwitter />
           </SocialIcon>
@@ -150,6 +226,7 @@ function Contact() {
             href="https://www.instagram.com/koltapp/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram"
           >
             <FaInstagram />
           </SocialIcon>

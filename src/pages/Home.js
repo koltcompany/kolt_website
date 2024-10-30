@@ -13,30 +13,61 @@ const HomeWrapper = styled.div`
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    justify-content: flex-start;
+    padding-top: 5rem;
+  }
 `;
 
 const Content = styled.div`
   max-width: 1000px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 4.5rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   color: #000000;
   margin-bottom: 1.5rem;
   font-weight: 600;
   line-height: 1.1;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: #333333;
   margin-bottom: 2rem;
   line-height: 1.5;
+  max-width: 800px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+  }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
 `;
 
 const Button = styled(Link)`
@@ -45,7 +76,18 @@ const Button = styled(Link)`
   text-decoration: none;
   border-radius: 4px;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 const PrimaryButton = styled(Button)`
@@ -54,6 +96,12 @@ const PrimaryButton = styled(Button)`
 
   &:hover {
     background-color: #333333;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      background-color: #000000;
+    }
   }
 `;
 
@@ -64,6 +112,12 @@ const SecondaryButton = styled(Button)`
 
   &:hover {
     background-color: #f0f0f0;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      background-color: white;
+    }
   }
 `;
 
@@ -93,8 +147,12 @@ function Home() {
             {t("home_subtitle")}
           </Subtitle>
           <ButtonGroup>
-            <PrimaryButton onClick={() => navigateTo('/services')} to="/services">{t("home_button_explore_services")}</PrimaryButton>
-            <SecondaryButton onClick={() => navigateTo('/contact')} to="/contact">{t("home_button_contact_us")}</SecondaryButton>
+            <PrimaryButton onClick={() => navigateTo('/services')} to="/services">
+              {t("home_button_explore_services")}
+            </PrimaryButton>
+            <SecondaryButton onClick={() => navigateTo('/contact')} to="/contact">
+              {t("home_button_contact_us")}
+            </SecondaryButton>
           </ButtonGroup>
         </Content>
       </HomeWrapper>

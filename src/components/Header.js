@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -11,6 +14,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   width: 100%;
   z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 `;
 
 const Nav = styled.nav`
@@ -20,29 +24,42 @@ const Nav = styled.nav`
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem 1rem;
+  }
 `;
 
 const Logo = styled(Link)`
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #000000;
   text-decoration: none;
+  z-index: 1001;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const NavLinks = styled.ul`
   display: flex;
   list-style: none;
   align-items: center;
+  transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
-    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+    display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 75%;
+    background-color: #f9f9f7;
+    padding: 5rem 2rem 2rem 2rem;
+    transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(100%)')};
+    box-shadow: ${({ $isOpen }) => ($isOpen ? '-2px 0 5px rgba(0, 0, 0, 0.1)' : 'none')};
   }
 `;
 
@@ -51,6 +68,8 @@ const NavItem = styled.li`
 
   @media (max-width: 768px) {
     margin: 1rem 0;
+    width: 100%;
+    text-align: center;
   }
 `;
 
@@ -59,9 +78,16 @@ const NavLink = styled(Link)`
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
+  font-size: 1rem;
 
   &:hover {
     color: var(--secondary-color);
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
   }
 `;
 
@@ -71,26 +97,62 @@ const MenuButton = styled.button`
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 1001;
+  padding: 0.5rem;
+  color: #000000;
 
   @media (max-width: 768px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Overlay = styled.div`
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
 `;
 
 function Header({ currentLocale, onLanguageChange }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const navigateTo = (path) => {
     window.scrollTo(0, 0);
-  }
-
-  const { t } = useTranslation();
+    setIsOpen(false);
+  };
 
   return (
     <HeaderWrapper>
       <Nav>
         <Logo onClick={() => navigateTo('/')} to="/">KOLT</Logo>
-        <MenuButton onClick={() => setIsOpen(!isOpen)}>
+        <MenuButton onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
           {isOpen ? "✕" : "☰"}
         </MenuButton>
         <NavLinks $isOpen={isOpen}>
@@ -110,6 +172,7 @@ function Header({ currentLocale, onLanguageChange }) {
             <LanguageSelector />
           </NavItem>
         </NavLinks>
+        <Overlay $isOpen={isOpen} onClick={() => setIsOpen(false)} />
       </Nav>
     </HeaderWrapper>
   );
