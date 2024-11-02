@@ -5,8 +5,7 @@ import React, {
 
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const FadeInSection = styled.div`
   opacity: 0;
@@ -40,7 +39,10 @@ const PageContainer = styled.div`
   background-color: ${props => props.$bgColor};
 
   @media (max-width: 768px) {
-    padding: 60px 1rem;
+    padding: 0;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
   }
 `;
 
@@ -51,14 +53,12 @@ const HeroSection = styled.div`
   min-height: 100vh;
   padding: 4rem 0;
   transition: all 0.6s ease;
+  scroll-snap-align: start;
 
   @media (max-width: 768px) {
-    padding: 2rem 0;
-    min-height: auto;
-  }
-
-  &:first-of-type {
-    padding-top: 2rem;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    scroll-snap-align: start;
   }
 `;
 
@@ -67,6 +67,8 @@ const Content = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    padding: 0 1.5rem;
+    margin-top: 80px;
   }
 `;
 
@@ -78,15 +80,9 @@ const Title = styled.h1`
   line-height: 1.1;
   transition: transform 0.3s ease;
 
-  @media (min-width: 769px) {
-    &:hover {
-      transform: scale(1.01);
-    }
-  }
-
   @media (max-width: 768px) {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     line-height: 1.2;
   }
 `;
@@ -109,68 +105,6 @@ const Subtitle = styled.p`
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
-  }
-`;
-
-const Button = styled(Link)`
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  text-align: center;
-
-  @media (max-width: 480px) {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
-const PrimaryButton = styled(Button)`
-  background-color: #000000;
-  color: white;
-
-  &:hover {
-    background-color: #333333;
-  }
-
-  @media (hover: none) {
-    &:hover {
-      background-color: #000000;
-    }
-  }
-`;
-
-const SecondaryButton = styled(Button)`
-  background-color: white;
-  color: #000000;
-  border: 1px solid #000000;
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-
-  @media (hover: none) {
-    &:hover {
-      background-color: white;
-    }
-  }
-`;
-
 const BackgroundSection = styled.div`
   position: fixed;
   top: 0;
@@ -182,12 +116,38 @@ const BackgroundSection = styled.div`
   background-color: ${props => props.$bgColor};
 `;
 
+const bounce = keyframes`
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+`;
+
+const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000000;
+  animation: ${bounce} 2s infinite;
+  cursor: pointer;
+  display: ${({ $isLastSectionVisible }) => ($isLastSectionVisible ? 'none' : 'block')};
+
+  @media (max-width: 768px) {
+    display: ${({ $isLastSectionVisible }) => ($isLastSectionVisible ? 'none' : 'block')};
+  }
+`;
 
 function About() {
   const { t, i18n } = useTranslation();
   const [activeSection, setActiveSection] = useState(0);
-  
-  // Define background colors for each section
+  const [isLastSectionVisible, setIsLastSectionVisible] = useState(false);
+
   const sectionColors = [
     '#f9f9f7', // Light background for first section
     '#ffffff', // White for second section
@@ -198,7 +158,7 @@ function About() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-50% 0px', // Trigger when section is in the middle of viewport
+      rootMargin: '-50% 0px',
       threshold: 0
     };
 
@@ -208,6 +168,7 @@ function About() {
           const sectionIndex = parseInt(entry.target.getAttribute('data-section'));
           setActiveSection(sectionIndex);
           entry.target.classList.add('visible');
+          setIsLastSectionVisible(sectionIndex === sectionColors.length - 1);
         }
       });
     }, observerOptions);
@@ -220,13 +181,11 @@ function About() {
       });
     }, { threshold: 0.1 });
 
-    // Observe sections for background changes
     document.querySelectorAll('.section').forEach((section, index) => {
       section.setAttribute('data-section', index);
       sectionObserver.observe(section);
     });
 
-    // Observe elements for animations
     document.querySelectorAll('.animate-section').forEach((el) => {
       animationObserver.observe(el);
     });
@@ -235,8 +194,7 @@ function About() {
       sectionObserver.disconnect();
       animationObserver.disconnect();
     };
-  }, []);
-
+  }, [sectionColors.length]);
 
   return (
     <>
@@ -260,7 +218,7 @@ function About() {
             </Content>
           </FadeInSection>
         </HeroSection>
-
+        
         <HeroSection className="section">
           <SlideInSection className="animate-section" $direction="left">
             <Content>
@@ -288,6 +246,7 @@ function About() {
             </Content>
           </FadeInSection>
         </HeroSection>
+        <ScrollIndicator $isLastSectionVisible={isLastSectionVisible}>↓</ScrollIndicator>
       </PageContainer>
     </>
   );

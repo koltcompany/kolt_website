@@ -4,7 +4,10 @@ import React, {
 } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+} from 'react-router-dom';
 import styled from 'styled-components';
 
 import LanguageSelector from './LanguageSelector';
@@ -60,6 +63,7 @@ const NavLinks = styled.ul`
     padding: 5rem 2rem 2rem 2rem;
     transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(100%)')};
     box-shadow: ${({ $isOpen }) => ($isOpen ? '-2px 0 5px rgba(0, 0, 0, 0.1)' : 'none')};
+    z-index: 1001;
   }
 `;
 
@@ -79,6 +83,11 @@ const NavLink = styled(Link)`
   font-weight: 500;
   transition: color 0.3s ease;
   font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
 
   &:hover {
     color: var(--secondary-color);
@@ -88,6 +97,7 @@ const NavLink = styled(Link)`
     display: block;
     padding: 0.5rem 0;
     font-size: 1.1rem;
+    width: 100%;
   }
 `;
 
@@ -114,7 +124,7 @@ const MenuButton = styled.button`
 
 const Overlay = styled.div`
   display: none;
-  
+
   @media (max-width: 768px) {
     display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
     position: fixed;
@@ -130,14 +140,10 @@ const Overlay = styled.div`
 function Header({ currentLocale, onLanguageChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -146,6 +152,7 @@ function Header({ currentLocale, onLanguageChange }) {
   const navigateTo = (path) => {
     window.scrollTo(0, 0);
     setIsOpen(false);
+    navigate(path);
   };
 
   return (
@@ -157,16 +164,16 @@ function Header({ currentLocale, onLanguageChange }) {
         </MenuButton>
         <NavLinks $isOpen={isOpen}>
           <NavItem>
-            <NavLink onClick={() => navigateTo('/')} to="/">{t("nav_home")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/')}>{t("nav_home")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={() => navigateTo('/services')} to="/services">{t("nav_services")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/services')}>{t("nav_services")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={() => navigateTo('/about')} to="/about">{t("nav_about")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/about')}>{t("nav_about")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={() => navigateTo('/contact')} to="/contact">{t("nav_contact")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/contact')}>{t("nav_contact")}</NavLink>
           </NavItem>
           <NavItem>
             <LanguageSelector />

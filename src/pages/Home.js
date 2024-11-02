@@ -15,9 +15,9 @@ const HomeWrapper = styled.div`
   margin: 0 auto;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1.5rem;
     justify-content: flex-start;
-    padding-top: 5rem;
+    padding-top: 100px;
   }
 `;
 
@@ -25,7 +25,11 @@ const Content = styled.div`
   max-width: 1000px;
 
   @media (max-width: 768px) {
-    max-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 
@@ -37,12 +41,17 @@ const Title = styled.h1`
   line-height: 1.1;
 
   @media (max-width: 768px) {
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    margin-top: 3rem;
+    text-align: left;
+    font-weight: 800;
+    letter-spacing: -0.5px;
   }
 
   @media (max-width: 480px) {
-    font-size: 2rem;
+    font-size: 2.7rem;
   }
 `;
 
@@ -54,19 +63,28 @@ const Subtitle = styled.p`
   max-width: 800px;
 
   @media (max-width: 768px) {
-    margin-bottom: 1.5rem;
     font-size: 1rem;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+    text-align: left;
+    color: #666666;
+    max-width: 100%;
+    padding-right: 0.2rem;
+    padding-left: 0.2rem;
+    letter-spacing: 0.2px;
   }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     width: 100%;
+    margin-top: 2rem;
   }
 `;
 
@@ -74,15 +92,16 @@ const Button = styled(Link)`
   display: inline-block;
   padding: 0.75rem 1.5rem;
   text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
+  border-radius: 6px;
+  font-weight: 600;
   transition: all 0.3s ease;
   text-align: center;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
   }
 
   &:active {

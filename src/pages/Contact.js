@@ -24,8 +24,9 @@ const PageContainer = styled.div`
   margin: 0 auto;
 
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 1rem;
     justify-content: flex-start;
+    padding-top: 100px; // Increased top padding for mobile
   }
 `;
 
@@ -38,6 +39,7 @@ const Title = styled.h1`
 
   @media (max-width: 768px) {
     margin-bottom: 2rem;
+    margin-top: 2rem; // Added top margin for mobile
   }
 `;
 
