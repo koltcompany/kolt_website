@@ -22,7 +22,7 @@ function App() {
       <GlobalStyles />
       <Helmet>
         <html lang={i18n.language} />
-        <title>Kolt - AI-Driven Construction Solutions</title>
+        <title>Kolt | AI-Driven Construction Solutions.</title>
         <meta name="description" content="Kolt leverages AI and modern technology to bring efficiency to construction sites and add value to all parties in the supply chain." />
       </Helmet>
       <div className="App">
