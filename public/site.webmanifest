@@ -1,5 +1,5 @@
 {
-    "name": "Kolt - AI-Driven Construction Solutions",
+    "name": "Kolt | AI-Driven Construction Solutions.",
     "short_name": "Kolt",
     "icons": [
       {
@@ -17,5 +17,5 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "start_url": "/",
-    "description": "AI-Driven Solutions for Construction's Future"
+    "description": "AI-Driven Solutions for Construction's Future."
   }
