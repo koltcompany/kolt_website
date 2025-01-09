@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { Helmet } from 'react-helmet';
-import { useTranslation } from 'react-i18next';
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import {
   FaEnvelope,
   FaFacebookSquare,
@@ -9,8 +9,8 @@ import {
   FaLinkedin,
   FaPhone,
   FaTwitter,
-} from 'react-icons/fa';
-import styled from 'styled-components';
+} from "react-icons/fa";
+import styled from "styled-components";
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -25,8 +25,8 @@ const PageContainer = styled.div`
 
   @media (max-width: 768px) {
     padding: 1rem;
-    justify-content: flex-start;
-    padding-top: 100px; // Increased top padding for mobile
+    min-height: 100dvh;
+    justify-content: center;
   }
 `;
 
@@ -38,8 +38,7 @@ const Title = styled.h1`
   text-align: center;
 
   @media (max-width: 768px) {
-    margin-bottom: 2rem;
-    margin-top: 2rem; // Added top margin for mobile
+    margin-bottom: 3rem;
   }
 `;
 
@@ -47,28 +46,21 @@ const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
   margin-bottom: 3rem;
   width: 100%;
   max-width: 600px;
-
-  @media (max-width: 768px) {
-    margin-bottom: 2rem;
-  }
 `;
 
 const ContactItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 0.7rem;
+  justify-content: center;
   font-size: clamp(1.2rem, 3vw, 2rem);
   transition: transform 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    margin-bottom: 1rem;
   }
 `;
 
@@ -78,66 +70,21 @@ const Icon = styled.span`
   align-items: center;
 `;
 
-const TeamInfo = styled.div`
-  text-align: center;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 600px;
-`;
-
-const TeamMember = styled.div`
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    margin-bottom: 1rem;
-  }
-`;
-
-const Name = styled.h3`
-  font-size: clamp(1.1rem, 2vw, 1.2rem);
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-`;
-
-const Email = styled.a`
-  color: #111111;
-  text-decoration: none;
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
-  padding: 0.5rem;
-  
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    display: inline-block;
-    width: 100%;
-    padding: 0.5rem 0;
-  }
-`;
-
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 2rem;
+  margin-top: 2rem;
 
   @media (max-width: 768px) {
-    gap: 2rem;
-    flex-wrap: wrap;
+    gap: 2.5rem;
     padding: 1rem 0;
   }
 `;
 
 const SocialIcon = styled.a`
   color: #000000;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
   padding: 0.5rem;
   transition: all 0.2s ease;
   display: flex;
@@ -148,10 +95,6 @@ const SocialIcon = styled.a`
     color: #555555;
     transform: translateY(-2px);
   }
-
-  @media (max-width: 768px) {
-    padding: 0.75rem;
-  }
 `;
 
 function Contact() {
@@ -160,10 +103,10 @@ function Contact() {
   return (
     <>
       <Helmet>
-        <title>Kolt | {t("contact_title")}</title>
+        <title>Kolt | Ota Yhteyttä</title>
         <meta name="description" content={t("contact_description")} />
         <link rel="canonical" href="https://www.kolt.fi/contact" />
-        <meta property="og:title" content={t("contact_title")} />
+        <meta property="og:title" content="Ota Yhteyttä" />
         <meta property="og:description" content={t("contact_description")} />
         <meta property="og:url" content="https://www.kolt.fi/contact" />
         <meta property="og:type" content="website" />
@@ -176,7 +119,10 @@ function Contact() {
             <Icon>
               <FaEnvelope />
             </Icon>
-            <a href="mailto:info@kolt.fi" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <a
+              href="mailto:info@kolt.fi"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
               info@kolt.fi
             </a>
           </ContactItem>
@@ -184,21 +130,14 @@ function Contact() {
             <Icon>
               <FaPhone />
             </Icon>
-            <a href="tel:+358405539850" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <a
+              href="tel:+358405539850"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
               0405539850
             </a>
           </ContactItem>
         </ContactInfo>
-        <TeamInfo>
-          <TeamMember>
-            <Name>Riku Lauttia</Name>
-            <Email href="mailto:rikulauttia@kolt.fi">rikulauttia@kolt.fi</Email>
-          </TeamMember>
-          <TeamMember>
-            <Name>Robi Johansson</Name>
-            <Email href="mailto:robijohansson@kolt.fi">robijohansson@kolt.fi</Email>
-          </TeamMember>
-        </TeamInfo>
         <SocialLinks>
           <SocialIcon
             href="https://linkedin.com/company/koltcompany"
