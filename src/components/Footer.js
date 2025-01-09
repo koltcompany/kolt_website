@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
   background-color: #000000;
@@ -152,9 +152,9 @@ const SocialIcon = styled.a`
 function Footer() {
   const navigateTo = (path) => {
     window.scrollTo(0, 0);
-  }
+  };
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <FooterWrapper>
@@ -162,16 +162,24 @@ function Footer() {
         <TopSection>
           <FooterSection>
             <FooterTitle>Kolt Oy</FooterTitle>
-            <FooterText>Pispalantie 19 B 54</FooterText>
-            <FooterText>20540 TURKU</FooterText>
+            <FooterText>Parrantie 3 F 54</FooterText>
+            <FooterText>20300 TURKU</FooterText>
             <FooterText>3463883-8</FooterText>
           </FooterSection>
           <FooterSection>
             <FooterTitle>{t("nav_menu")}</FooterTitle>
-            <FooterLink onClick={() => navigateTo('/')} to="/">{t("nav_home")}</FooterLink>
-            <FooterLink onClick={() => navigateTo('/services')} to="/services">{t("nav_services")}</FooterLink>
-            <FooterLink onClick={() => navigateTo('/about')} to="/about">{t("nav_about")}</FooterLink>
-            <FooterLink onClick={() => navigateTo('/contact')} to="/contact">{t("nav_contact")}</FooterLink>
+            <FooterLink onClick={() => navigateTo("/")} to="/">
+              {t("nav_home")}
+            </FooterLink>
+            <FooterLink onClick={() => navigateTo("/services")} to="/services">
+              {t("nav_services")}
+            </FooterLink>
+            <FooterLink onClick={() => navigateTo("/about")} to="/about">
+              {t("nav_about")}
+            </FooterLink>
+            <FooterLink onClick={() => navigateTo("/contact")} to="/contact">
+              {t("nav_contact")}
+            </FooterLink>
           </FooterSection>
           <FooterSection>
             <FooterTitle>{t("contact_us")}</FooterTitle>
