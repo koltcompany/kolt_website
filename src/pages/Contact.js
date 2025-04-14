@@ -7,7 +7,6 @@ import {
   FaFacebookSquare,
   FaInstagram,
   FaLinkedin,
-  FaPhone,
   FaTwitter,
 } from "react-icons/fa";
 import styled from "styled-components";
@@ -124,17 +123,6 @@ function Contact() {
               style={{ color: "inherit", textDecoration: "none" }}
             >
               info@kolt.fi
-            </a>
-          </ContactItem>
-          <ContactItem>
-            <Icon>
-              <FaPhone />
-            </Icon>
-            <a
-              href="tel:+358405539850"
-              style={{ color: "inherit", textDecoration: "none" }}
-            >
-              0405539850
             </a>
           </ContactItem>
         </ContactInfo>

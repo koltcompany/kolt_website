@@ -162,8 +162,6 @@ function Footer() {
         <TopSection>
           <FooterSection>
             <FooterTitle>Kolt Oy</FooterTitle>
-            <FooterText>Parrantie 3 F 54</FooterText>
-            <FooterText>20300 TURKU</FooterText>
             <FooterText>3463883-8</FooterText>
           </FooterSection>
           <FooterSection>
@@ -184,7 +182,6 @@ function Footer() {
           <FooterSection>
             <FooterTitle>{t("contact_us")}</FooterTitle>
             <FooterText>info@kolt.fi</FooterText>
-            <FooterText>0405539850</FooterText>
           </FooterSection>
         </TopSection>
         <BottomSection>
