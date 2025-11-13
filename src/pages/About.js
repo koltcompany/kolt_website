@@ -1,252 +1,186 @@
 import React, {
   useEffect,
-  useState,
 } from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
-
-const FadeInSection = styled.div`
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-  
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const SlideInSection = styled.div`
-  opacity: 0;
-  transform: ${props => props.$direction === 'left' ? 'translateX(-50px)' : 'translateX(50px)'};
-  transition: all 0.8s ease-out;
-  
-  &.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 
 const PageContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 80px 2rem;
+  align-items: center;
+  padding: 110px 1.5rem 72px;
   margin: 0 auto;
-  transition: background-color 0.6s ease;
-  background-color: ${props => props.$bgColor};
+`;
 
-  @media (max-width: 768px) {
-    padding: 0;
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
+const fadeUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
 
-const HeroSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 4rem 0;
-  transition: all 0.6s ease;
-  scroll-snap-align: start;
+const Reveal = styled.div`
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
 
-  @media (max-width: 768px) {
-    min-height: 100vh;
-    padding: 2rem 1rem;
-    scroll-snap-align: start;
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
 
 const Content = styled.div`
-  max-width: 800px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0 1.5rem;
-    margin-top: 80px;
-  }
+  width: 100%;
+  max-width: 960px;
+  text-align: center;
 `;
 
 const Title = styled.h1`
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 4.2vw, 3rem);
   color: #000000;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  line-height: 1.1;
-  transition: transform 0.3s ease;
+  margin: 0 auto 1rem;
+  font-weight: 800;
+  line-height: 1.15;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    font-size: 2.2rem;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
   color: #333333;
-  margin-bottom: 2rem;
-  line-height: 1.5;
-  max-width: 600px;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    max-width: 100%;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin: 0 auto;
+  line-height: 1.7;
+  max-width: 820px;
 `;
 
-const BackgroundSection = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transition: background-color 0.6s ease;
-  background-color: ${props => props.$bgColor};
+const Founder = styled.p`
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0.75rem auto 0;
 `;
 
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-`;
-
-const ScrollIndicator = styled.div`
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+const SectionHeader = styled.h2`
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
   color: #000000;
-  animation: ${bounce} 2s infinite;
-  cursor: pointer;
-  display: ${({ $isLastSectionVisible }) => ($isLastSectionVisible ? 'none' : 'block')};
+  margin: 2.5rem auto 1rem;
+  font-weight: 700;
+`;
 
-  @media (max-width: 768px) {
-    display: ${({ $isLastSectionVisible }) => ($isLastSectionVisible ? 'none' : 'block')};
+const Card = styled.div`
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin: 1.25rem auto 1.75rem;
+  text-align: left;
+  animation: ${fadeUp} 700ms ease both;
+`;
+
+const BulletList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 820px;
+  text-align: left;
+`;
+
+const BulletItem = styled.li`
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.6rem;
+  color: #333333;
+  line-height: 1.6;
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.58em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #000000;
   }
 `;
 
 function About() {
   const { t, i18n } = useTranslation();
-  const [activeSection, setActiveSection] = useState(0);
-  const [isLastSectionVisible, setIsLastSectionVisible] = useState(false);
-
-  const sectionColors = [
-    '#f9f9f7', // Light background for first section
-    '#ffffff', // White for second section
-    '#f5f5f5', // Slight gray for third section
-    '#f9f9f7'  // Back to light background for last section
-  ];
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-50% 0px',
-      threshold: 0
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const sectionIndex = parseInt(entry.target.getAttribute('data-section'));
-          setActiveSection(sectionIndex);
-          entry.target.classList.add('visible');
-          setIsLastSectionVisible(sectionIndex === sectionColors.length - 1);
-        }
-      });
-    }, observerOptions);
-
-    const animationObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.section').forEach((section, index) => {
-      section.setAttribute('data-section', index);
-      sectionObserver.observe(section);
-    });
-
-    document.querySelectorAll('.animate-section').forEach((el) => {
-      animationObserver.observe(el);
-    });
-
-    return () => {
-      sectionObserver.disconnect();
-      animationObserver.disconnect();
-    };
-  }, [sectionColors.length]);
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
       <Helmet>
-        <title>Kolt | {t("about_title")}</title>
-        <meta name="description" content={t("about_kolt")} />
+        <title>{t("meta.title")}</title>
+        <meta name="description" content={t("meta.description")} />
         <link rel="canonical" href="https://www.kolt.fi/about" />
-        <meta property="og:title" content={t("about_title")} />
-        <meta property="og:description" content={t("about_kolt")} />
+        <meta property="og:title" content={t("meta.title")} />
+        <meta property="og:description" content={t("meta.description")} />
         <meta property="og:url" content="https://www.kolt.fi/about" />
         <meta property="og:type" content="website" />
         <html lang={i18n.language} />
       </Helmet>
-      <BackgroundSection $bgColor={sectionColors[activeSection]} />
       <PageContainer>
-        <HeroSection className="section">
-          <FadeInSection className="animate-section">
-            <Content>
-              <Title>{t("about_title")}</Title>
-              <Subtitle>{t("about_kolt")}</Subtitle>
-            </Content>
-          </FadeInSection>
-        </HeroSection>
-        
-        <HeroSection className="section">
-          <SlideInSection className="animate-section" $direction="left">
-            <Content>
-              <Title>{t("our_vision_title")}</Title>
-              <Subtitle>{t("our_vision_subtitle")}</Subtitle>
-            </Content>
-          </SlideInSection>
-        </HeroSection>
+        <Content>
+          <Reveal className="reveal" style={{ transitionDelay: '60ms' }}>
+            <Title>{t("about.title")}</Title>
+          </Reveal>
+          <Reveal className="reveal" style={{ transitionDelay: '140ms' }}>
+            <Card>
+              <Subtitle>{t("about.body")}</Subtitle>
+              <Founder>{t("about.founder")}</Founder>
+            </Card>
+          </Reveal>
 
-        <HeroSection className="section">
-          <SlideInSection className="animate-section" $direction="right">
-            <Content>
-              <Title>{t("why_kolt_title")}</Title>
-              <Subtitle>{t("why_kolt_subtitle")}</Subtitle>
-            </Content>
-          </SlideInSection>
-        </HeroSection>
+          <Reveal className="reveal" style={{ transitionDelay: '220ms' }}>
+            <SectionHeader>{t("about.bulletsTitle")}</SectionHeader>
+          </Reveal>
+          <Reveal className="reveal" style={{ transitionDelay: '260ms' }}>
+            <Card>
+              <BulletList>
+                {t("about.bullets", { returnObjects: true }).map((item, idx) => (
+                  <BulletItem key={idx} className="reveal" style={{ transitionDelay: `${280 + idx * 70}ms` }}>
+                    {item}
+                  </BulletItem>
+                ))}
+              </BulletList>
+            </Card>
+          </Reveal>
 
-        <HeroSection className="section">
-          <FadeInSection className="animate-section">
-            <Content>
-              <Title>{t("join_us_title")}</Title>
-              <Subtitle>{t("join_us_subtitle1")}</Subtitle>
-              <Subtitle>{t("join_us_subtitle2")}</Subtitle>
-            </Content>
-          </FadeInSection>
-        </HeroSection>
-        <ScrollIndicator $isLastSectionVisible={isLastSectionVisible}>↓</ScrollIndicator>
+          <Reveal className="reveal" style={{ transitionDelay: '320ms' }}>
+            <SectionHeader>{t("about.moreTitle")}</SectionHeader>
+          </Reveal>
+          <Reveal className="reveal" style={{ transitionDelay: '360ms' }}>
+            <Card>
+              <Subtitle style={{ margin: 0 }}>{t("about.more")}</Subtitle>
+            </Card>
+          </Reveal>
+        </Content>
       </PageContainer>
     </>
   );

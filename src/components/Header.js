@@ -164,16 +164,16 @@ function Header({ currentLocale, onLanguageChange }) {
         </MenuButton>
         <NavLinks $isOpen={isOpen}>
           <NavItem>
-            <NavLink as="button" onClick={() => navigateTo('/')}>{t("nav_home")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/')}>{t("nav.home")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink as="button" onClick={() => navigateTo('/services')}>{t("nav_services")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/services')}>{t("nav.services")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink as="button" onClick={() => navigateTo('/about')}>{t("nav_about")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/about')}>{t("nav.about")}</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink as="button" onClick={() => navigateTo('/contact')}>{t("nav_contact")}</NavLink>
+            <NavLink as="button" onClick={() => navigateTo('/contact')}>{t("nav.contact")}</NavLink>
           </NavItem>
           <NavItem>
             <LanguageSelector />

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -31,6 +31,15 @@ const Content = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
+`;
+
+const Kicker = styled.div`
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #666666;
+  margin-bottom: 0.75rem;
 `;
 
 const Title = styled.h1`
@@ -150,27 +159,28 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>Kolt | {t("home_title")}</title>
-        <meta name="description" content={t("home_subtitle")} />
+        <title>{t("meta.title")}</title>
+        <meta name="description" content={t("meta.description")} />
         <link rel="canonical" href="https://www.kolt.fi/" />
-        <meta property="og:title" content={t("home_title")} />
-        <meta property="og:description" content={t("home_subtitle")} />
+        <meta property="og:title" content={t("meta.title")} />
+        <meta property="og:description" content={t("meta.description")} />
         <meta property="og:url" content="https://www.kolt.fi/" />
         <meta property="og:type" content="website" />
         <html lang={i18n.language} />
       </Helmet>
       <HomeWrapper>
         <Content>
-          <Title>{t("home_title")}</Title>
+          <Kicker>{t("hero.kicker")}</Kicker>
+          <Title>{t("hero.title")}</Title>
           <Subtitle>
-            {t("home_subtitle")}
+            {t("hero.subtitle")}
           </Subtitle>
           <ButtonGroup>
-            <PrimaryButton onClick={() => navigateTo('/services')} to="/services">
-              {t("home_button_explore_services")}
+            <PrimaryButton onClick={() => navigateTo('/contact')} to="/contact">
+              {t("hero.ctaPrimary")}
             </PrimaryButton>
-            <SecondaryButton onClick={() => navigateTo('/contact')} to="/contact">
-              {t("home_button_contact_us")}
+            <SecondaryButton onClick={() => navigateTo('/services')} to="/services">
+              {t("hero.ctaSecondary")}
             </SecondaryButton>
           </ButtonGroup>
         </Content>

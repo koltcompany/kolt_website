@@ -1,41 +1,76 @@
 {
-  "nav_home": "Hem",
-  "nav_services": "Tjänster",
-  "nav_about": "Om oss",
-  "nav_contact": "Kontakt",
-  "nav_menu": "Meny",
-  "contact_us": "Kontakta oss",
-  "footer_rights": "Kolt. Alla rättigheter förbehållna.",
-  "home_title": "AI-drivna lösningar för byggbranschens framtid.",
-  "home_subtitle": "Vi använder AI och modern teknik för att öka effektiviteten på byggarbetsplatser och tillföra värde till alla parter i byggbranschens leveranskedja. Gå med oss i att forma framtiden för byggarbetsplatshantering med AI-drivna lösningar som gynnar alla i ekosystemet.",
-  "home_button_explore_services": "Utforska våra tjänster",
-  "home_button_contact_us": "Kontakta oss",
-  "service_title": "Kolt använder avancerad AI och teknik för att förbättra försäljning, lagerhantering och leveransprocesser.",
-  "service_for_installers": "För installatörer",
-  "service_installers_list1": "Spårning av beställningar i realtid",
-  "service_installers_list2": "Anpassade aviseringar",
-  "service_installers_list3": "Enkel returprocess",
-  "service_for_businesses": "För företag",
-  "service_businesses_list1": "Intelligent rekommendationssystem",
-  "service_businesses_list2": "Lagerhantering och optimering",
-  "service_businesses_list3": "Försäljningsanalys och rapportering",
-  "service_for_drivers": "För förare",
-  "service_drivers_list1": "AI-baserade ruttoptimeringar",
-  "service_drivers_list2": "Schemaläggning i realtid",
-  "service_drivers_list3": "Feedbacksystem",
-  "about_title": "Om Kolt",
-  "about_kolt": "Kolt är ett framåtblickande startup som revolutionerar byggbranschen med AI-drivna lösningar. Vi kopplar grossister, förare och kunder för att skapa ett mer effektivt och hållbart bygg ekosystem.",
-  "our_vision_title": "Vår Vision",
-  "our_vision_subtitle": "Kolt är inte bara en annan tech-startup — vi är en katalysator för förändring. Vår vision är djärv: att bli ett företag som sätter standarden för innovation inom byggsektorn. Vi siktar på att säkra betydande finansiering för att skala vår verksamhet globalt, driva den breda antagandet av vår banbrytande teknologi. Genom att göra detta kommer vi att omforma byggbranschens framtid, göra den mer effektiv, hållbar och mer sammanlänkad än någonsin tidigare.",
-  "why_kolt_title": "Varför Kolt?",
-  "why_kolt_subtitle": "Vår resa drivs av ett orubbligt engagemang för excellens och en obeveklig strävan efter innovation. Vi tror att genom att investera i avancerad teknik och prioritera våra kunders behov, kan vi skapa lösningar som inte bara uppfyller utan överträffar branschens förväntningar. Kolts applikation är utformad för att förbättra arbetsflödets smidighet och effektivitet, vilket säkerställer att varje länk i leveranskedjan fungerar optimalt.",
-  "join_us_title": "Gå med oss",
-  "join_us_subtitle1": "När vi fokuserar på att skala vårt företag till nya höjder, bjuder vi in visionära investerare och strategiska partners att gå med oss på denna transformativa resa. Tillsammans kan vi utnyttja AI:s fulla potential inom byggbranschen och driva innovation som inte bara stör branschen utan också driver den mot större effektivitet och hållbarhet.",
-  "join_us_subtitle2": "På Kolt är vi mer än bara ett företag — vi är framstegspionjärer, dedikerade till att skapa en ljusare, mer effektiv framtid för byggbranschen. Gå med oss när vi tar djärva steg mot att göra Kolt till en global ledare inom byggteknologi.",
-  "contact_title": "Kontakta Oss",
+  "nav": {
+    "home": "Hem",
+    "services": "Tjänster",
+    "about": "Om oss",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "kicker": "Applied AI-studio",
+    "title": "Praktisk AI, levererad.",
+    "subtitle": "Vi designar, bygger och levererar tillämpad AI — skräddarsydda lösningar för företag och egna produktiserade verktyg. Mätbar effekt, produktionskvalitet och snabb väg från idé till drift.",
+    "ctaPrimary": "Börja samarbeta",
+    "ctaSecondary": "Se våra tjänster"
+  },
+  "services": {
+    "title": "Vad vi levererar",
+    "subtitle": "Från idé till inferens — snabbt, säkert och driftklart.",
+    "cards": {
+      "advisory": {
+        "title": "AI-strategi & rådgivning",
+        "desc": "Vägkartor, möjlighetsskattning och snabba vinster. Vi kopplar AI till dina mål."
+      },
+      "solutions": {
+        "title": "Skräddarsydda AI-lösningar",
+        "desc": "Datapipelines, modellval och utvärdering samt integrationer till din stack (webb, mobil, moln, edge)."
+      },
+      "products": {
+        "title": "Produktiserade verktyg",
+        "desc": "Återanvändbara AI-komponenter och interna verktyg (agenter, RAG, analys) som kan drivas och skalas."
+      },
+      "operations": {
+        "title": "MLOps & produktion",
+        "desc": "Utvärderingsramar, CI/CD för modeller, övervakning, säkerhet samt kostnads- och prestandaoptimering."
+      }
+    },
+    "cta": "Boka ett möte"
+  },
+  "about": {
+    "title": "Om Kolt",
+    "body": "Kolt är en applied AI-studio från Finland. Vi bygger kundlösningar och egna produkter. Principer: mindre hype, mer effekt; leverans till produktion; mät allt. Vi arbetar med moderna stackar (Python, Node/TS), stora moln och populära ramverk (PyTorch, TensorFlow, ONNX, OpenAI API, VLLM, Triton, LangChain, LlamaIndex) med fokus på efterlevnad och underhållbarhet.",
+    "founder": "Grundat av Riku Lauttia.",
+    "moreTitle": "Så här arbetar vi",
+    "more": "Ett senior, praktiskt team levererar i korta cykler: förstudie → prototyp → produktion. Vi håller scope fokuserat, mäter kvalitet/kostnad/latens och dokumenterar så att ert team kan äga och driva lösningen. Säkerhet, integritet och efterlevnad är förstklassiga från dag ett.",
+    "bulletsTitle": "Det kunder uppskattar",
+    "bullets": [
+      "Snabb väg från prototyp till produktion",
+      "Tydliga mått: latens, kostnad, kvalitet, säkerhet",
+      "Dokumentation och överlämning till ert team",
+      "Pragmatisk roadmap — utan inlåsning"
+    ]
+  },
+  "contact": {
+    "title": "Låt oss bygga något på riktigt",
+    "subtitle": "Beskriv ditt mål. Vi föreslår en pragmatisk, tidsboxad plan (ofta 2–4 veckor) för att bevisa effekt.",
+    "form": {
+      "name": "Namn",
+      "email": "E-post",
+      "message": "Vad vill du bygga?",
+      "submit": "Skicka"
+    },
+    "alt": "Eller mejla oss på"
+  },
+  "footer": {
+    "cta": "Vi tar AI till produktion. Redo?",
+    "rights": "© {{year}} Kolt Oy. Alla rättigheter förbehållna."
+  },
+  "meta": {
+    "title": "Kolt — Praktisk AI, levererad.",
+    "description": "Applied AI-studio: vi designar, bygger och levererar AI — skräddarsydda lösningar och egna verktyg. Fokus på resultat."
+  },
   "languages": {
-    "finnish": "Finska",
-    "english": "Engelska",
-    "swedish": "Svenska"
+    "finnish": "FI",
+    "english": "EN",
+    "swedish": "SV"
   }
 }

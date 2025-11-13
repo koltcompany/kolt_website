@@ -161,33 +161,33 @@ function Footer() {
       <FooterContent>
         <TopSection>
           <FooterSection>
-            <FooterTitle>Kolt Oy</FooterTitle>
-            <FooterText>3463883-8</FooterText>
+            <FooterTitle>{t("footer.cta")}</FooterTitle>
+            <FooterText>info@kolt.fi</FooterText>
           </FooterSection>
           <FooterSection>
-            <FooterTitle>{t("nav_menu")}</FooterTitle>
+            <FooterTitle></FooterTitle>
             <FooterLink onClick={() => navigateTo("/")} to="/">
-              {t("nav_home")}
+              {t("nav.home")}
             </FooterLink>
             <FooterLink onClick={() => navigateTo("/services")} to="/services">
-              {t("nav_services")}
+              {t("nav.services")}
             </FooterLink>
             <FooterLink onClick={() => navigateTo("/about")} to="/about">
-              {t("nav_about")}
+              {t("nav.about")}
             </FooterLink>
             <FooterLink onClick={() => navigateTo("/contact")} to="/contact">
-              {t("nav_contact")}
+              {t("nav.contact")}
             </FooterLink>
           </FooterSection>
           <FooterSection>
-            <FooterTitle>{t("contact_us")}</FooterTitle>
+            <FooterTitle>{t("nav.contact")}</FooterTitle>
             <FooterText>info@kolt.fi</FooterText>
           </FooterSection>
         </TopSection>
         <BottomSection>
           <Copyright>
             <FooterText>
-              © {new Date().getFullYear()} {t("footer_rights")}
+              {t("footer.rights", { year: new Date().getFullYear() })}
             </FooterText>
           </Copyright>
           <SocialIcons>

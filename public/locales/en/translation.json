@@ -1,41 +1,76 @@
 {
-  "nav_home": "Home",
-  "nav_services": "Services",
-  "nav_about": "About",
-  "nav_contact": "Contact",
-  "nav_menu": "Menu",
-  "contact_us": "Contact Us",
-  "footer_rights": "Kolt. All rights reserved.",
-  "home_title": "AI that works.",
-  "home_subtitle": "We leverage AI and modern technology to bring efficiency to construction sites and add value to all parties involved in the construction supply chain. Join us in shaping the future of construction site management with AI-driven solutions that benefit everyone in the ecosystem.",
-  "home_button_explore_services": "Explore Our Services",
-  "home_button_contact_us": "Contact Us",
-  "service_title": "Kolt utilizes advanced AI and technology to improve sales, inventory management, and delivery processes.",
-  "service_for_installers": "For Installers",
-  "service_installers_list1": "Real-time order tracking",
-  "service_installers_list2": "Customized notifications",
-  "service_installers_list3": "Easy return process",
-  "service_for_businesses": "For Businesses",
-  "service_businesses_list1": "Intelligent recommendation system",
-  "service_businesses_list2": "Inventory management and optimization",
-  "service_businesses_list3": "Sales analytics and reporting",
-  "service_for_drivers": "For Drivers",
-  "service_drivers_list1": "AI-based route optimizations",
-  "service_drivers_list2": "Real-time scheduling",
-  "service_drivers_list3": "Feedback system",
-  "about_title": "About Kolt",
-  "about_kolt": "Kolt is a forward-thinking startup revolutionizing the construction industry with AI-driven solutions. We connect wholesalers, drivers, and customers to create a more efficient and sustainable construction ecosystem.",
-  "our_vision_title": "Our Vision",
-  "our_vision_subtitle": "Kolt is not just another tech startup — we are a catalyst for change. Our vision is bold: to become a company that sets the standard for innovation in the construction sector. We aim to secure significant funding to scale our operations globally, driving the widespread adoption of our groundbreaking technology. By doing so, we will reshape the future of construction, making it more efficient, more sustainable, and more connected than ever before.",
-  "why_kolt_title": "Why Kolt?",
-  "why_kolt_subtitle": "Our journey is fueled by an unwavering commitment to excellence and a relentless pursuit of innovation. We believe that by investing in advanced technology and prioritizing the needs of our customers, we can create solutions that not only meet but exceed industry expectations. Kolt's application is designed to enhance workflow smoothness and efficiency, ensuring that every link in the supply chain operates at its best.",
-  "join_us_title": "Join Us",
-  "join_us_subtitle1": "As we focus on scaling our enterprise to new heights, we invite visionary investors and strategic partners to join us on this transformative journey. Together, we can harness the full potential of AI in construction, driving innovation that not only disrupts the industry but also propels it towards greater efficiency and sustainability.",
-  "join_us_subtitle2": "At Kolt, we are more than just a company — we are pioneers of progress, dedicated to creating a brighter, more efficient future for the construction industry. Join us as we take bold steps toward making Kolt a global leader in construction technology.",
-  "contact_title": "Contact Us",
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "kicker": "Applied AI Studio",
+    "title": "Practical AI, shipped.",
+    "subtitle": "We design, build, and ship applied AI — custom solutions for companies and productized tools of our own. Measurable impact, production-ready quality and fast iteration from idea to deployment.",
+    "ctaPrimary": "Work with us",
+    "ctaSecondary": "See our services"
+  },
+  "services": {
+    "title": "What we deliver",
+    "subtitle": "From idea to inference — fast, compliant, and production-ready.",
+    "cards": {
+      "advisory": {
+        "title": "AI Strategy & Advisory",
+        "desc": "Roadmaps, opportunity sizing, and quick wins. We align AI with your metrics and constraints."
+      },
+      "solutions": {
+        "title": "Custom AI Solutions",
+        "desc": "Data pipelines, model selection, evaluations, and integrations into your stack (web, mobile, cloud, edge)."
+      },
+      "products": {
+        "title": "Productized Tools",
+        "desc": "Reusable AI components and internal tools (agents, RAG, analytics) you can operate and scale."
+      },
+      "operations": {
+        "title": "MLOps & Production",
+        "desc": "Eval harnesses, CI/CD for models, monitoring, safety, and cost/perf tuning to keep AI reliable."
+      }
+    },
+    "cta": "Request a discovery call"
+  },
+  "about": {
+    "title": "About Kolt",
+    "body": "Kolt is an applied AI studio from Finland. We build client solutions and our own products. Our principles: less hype, more impact; ship to production; measure everything. We work with modern stacks (Python, Node/TS), major clouds, and popular frameworks (PyTorch, TensorFlow, ONNX, OpenAI API, VLLM, Triton, LangChain, LlamaIndex) with strong attention to compliance and maintainability.",
+    "founder": "Founded by Riku Lauttia.",
+    "moreTitle": "How we work",
+    "more": "A senior, hands-on team shipping in short cycles: discovery → prototype → production. We keep scope tight, measure quality/cost/latency, and document so your team can own and operate the solution. Security, privacy, and compliance are first-class from day one.",
+    "bulletsTitle": "What clients value",
+    "bullets": [
+      "Fast path from prototype to production",
+      "Clear metrics: latency, cost, quality, safety",
+      "Documentation and handover for your team",
+      "Pragmatic roadmap—no lock-in, no fluff"
+    ]
+  },
+  "contact": {
+    "title": "Let’s build something real",
+    "subtitle": "Tell us your goal. We’ll propose a pragmatic, time-boxed plan (often 2–4 weeks) to prove impact.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "What do you want to build?",
+      "submit": "Send message"
+    },
+    "alt": "Or email us at"
+  },
+  "footer": {
+    "cta": "We ship AI to production. Ready?",
+    "rights": "© {{year}} Kolt Oy. All rights reserved."
+  },
+  "meta": {
+    "title": "Kolt — Practical AI, shipped.",
+    "description": "Applied AI studio: we design, build, and ship AI—custom solutions for companies and productized tools of our own. Outcome-focused, production-ready."
+  },
   "languages": {
-    "finnish": "Finnish",
-    "english": "English",
-    "swedish": "Swedish"
+    "finnish": "FI",
+    "english": "EN",
+    "swedish": "SV"
   }
 }
