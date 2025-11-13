@@ -1,6 +1,6 @@
 {
-    "name": "Kolt | AI that works.",
-    "short_name": "Kolt",
+    "name": "Kolt — Practical AI, shipped.",
+    "short_name": "Kolt AI",
     "icons": [
       {
         "src": "/android-chrome-192x192.png",
@@ -17,5 +17,5 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "start_url": "/",
-    "description": "AI that works."
+    "description": "Applied AI studio."
   }
