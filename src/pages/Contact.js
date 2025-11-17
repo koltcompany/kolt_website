@@ -16,7 +16,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2.5rem 2rem;
+  padding: 120px 2rem 48px; /* ensure title clears fixed header on all sizes */
   background-color: #f9f9f7;
   max-width: 1200px;
   margin: 0 auto;
